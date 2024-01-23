@@ -4,11 +4,11 @@
 
 class DataAnalyzer {
 private:
-	const Drzewo& dataTree;
+	Drzewo& dataTree;
 
 public:
-    DataAnalyzer(const Drzewo& dataTree);
-
+    DataAnalyzer(Drzewo& dataTree);
+    void readDataFromFile(const string& fileName);
     void printSelfConsumptionSum(const Drzewo& startDate, const Drzewo& endDate);
     void printExportSum(const Drzewo& startDate, const Drzewo& endDate);
     void printImportSum(const Drzewo& startDate, const Drzewo& endDate);
