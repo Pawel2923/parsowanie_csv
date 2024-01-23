@@ -1,9 +1,30 @@
 #include <iostream>
+#include "Point.h"
+#include "tree.h"
+#include "Analyzer.h"
+#include "FileManager.h"
+#include <vector>
 
 using namespace std;
 
+
 int main()
 {
+    // Wczytaj dane z pliku CSV
+    FileManager manager;
+    std::vector<Point> dataPoints = manager.loadDataFromCsv("plik.csv");
+
+    // Zbuduj drzewo danych
+    Tree dataTree;
+    for (const auto& dataPoint : dataPoints) {
+        dataTree.dodanieDanych(dataPoint);
+    }
+
+    dataTree.pokazDrzewo();
+
+    // Utwórz obiekt analizatora danych
+    DataAnalyzer dataAnalyzer(dataTree);
+
     int choice;
 
     do {

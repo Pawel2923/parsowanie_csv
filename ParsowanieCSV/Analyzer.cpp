@@ -5,22 +5,93 @@
 
 using namespace std;
 
-DataAnalyzer::DataAnalyzer(Drzewo& data) : dataTree(data) {}
+DataAnalyzer::DataAnalyzer(const Tree& tree) : tree(tree) {}
 
-void DataAnalyzer::readDataFromFile(const string& fileName) {
-	ifstream file(fileName);
-	string line;
-	getline(file, line);
-	while (getline(file, line)) {
-		int year = stoi(line.substr(0, 4));
-		int month = stoi(line.substr(5, 2));
-		int day = stoi(line.substr(8, 2));
-		int quarter = stoi(line.substr(11, 1));
-		double selfConsumption = stod(line.substr(13, 6));
-		double exportValue = stod(line.substr(20, 6));
-		double importValue = stod(line.substr(27, 6));
-		double consumption = stod(line.substr(34, 6));
-		double production = stod(line.substr(41, 6));
-		dataTree.addDataPoint(Dane(year, month, day, quarter, selfConsumption, exportValue, importValue, consumption, production));
-	}
+double DataAnalyzer::sumAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja sumy autokonsumpcji
+    double suma = 0;
+
+    
+
+    return suma;
+}
+
+double DataAnalyzer::sumEksport(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja sumy eksportu
+
+    return 0;
+}
+
+double DataAnalyzer::sumImport(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja sumy importu
+    return 0;
+}
+
+double DataAnalyzer::sumPobor(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja sumy poboru
+    return 0;
+}
+
+double DataAnalyzer::sumProdukcja(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja sumy produkcji
+    return 0;
+}
+
+double DataAnalyzer::averageAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja œredniej autokonsumpcji
+    return 0;
+}
+
+double DataAnalyzer::averageEksport(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja œredniej eksportu
+    return 0;
+}
+
+double DataAnalyzer::averageImport(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja œredniej importu
+    return 0;
+}
+
+double DataAnalyzer::averagePobor(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja œredniej poboru
+    return 0;
+}
+
+double DataAnalyzer::averageProdukcja(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja œredniej produkcji
+    return 0;
+}
+
+void DataAnalyzer::compareAutokonsumpcja(const std::string& startDateTime1, const std::string& endDateTime1,
+    const std::string& startDateTime2, const std::string& endDateTime2) const {
+    // Implementacja porównania autokonsumpcji
+}
+
+void DataAnalyzer::compareEksport(const std::string& startDateTime1, const std::string& endDateTime1,
+    const std::string& startDateTime2, const std::string& endDateTime2) const {
+    // Implementacja porównania eksportu
+}
+
+void DataAnalyzer::compareImport(const std::string& startDateTime1, const std::string& endDateTime1,
+    const std::string& startDateTime2, const std::string& endDateTime2) const {
+    // Implementacja porównania importu
+}
+
+void DataAnalyzer::comparePobor(const std::string& startDateTime1, const std::string& endDateTime1,
+    const std::string& startDateTime2, const std::string& endDateTime2) const {
+    // Implementacja porównania poboru
+}
+
+void DataAnalyzer::compareProdukcja(const std::string& startDateTime1, const std::string& endDateTime1,
+    const std::string& startDateTime2, const std::string& endDateTime2) const {
+    // Implementacja porównania produkcji
+}
+
+void DataAnalyzer::searchAndPrintRecords(double searchedValue, double tolerance,
+    const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja wyszukiwania i wypisywania rekordów
+}
+
+void DataAnalyzer::printDataInRange(const std::string& startDateTime, const std::string& endDateTime) const {
+    // Implementacja wypisywania danych w przedziale
 }
