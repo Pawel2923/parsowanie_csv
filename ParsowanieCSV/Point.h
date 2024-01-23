@@ -22,7 +22,7 @@ public :
 	void display();
 	int getRok();
 	int getMiesiac();
-	int getDay();
+	int getDzien();
 	int getCwiartka();
 	double getAutokonsumpcja();
 	double getEksport();
