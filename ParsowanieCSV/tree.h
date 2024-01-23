@@ -1,25 +1,24 @@
+// Tree.h
 #ifndef TREE_H
 #define TREE_H
-#include <iostream>
+
+#include <map>
 #include <vector>
 #include "Point.h"
 
-using namespace std;
+class Tree {
+private:
+    
+        std::map<int, std::map<int, std::map<int, std::map<int, std::vector<Point>>>>> tree;
+    
 
-class Tree{
-	int level;
-	std::vector<Tree*>children;
-	Dane* data;
-public: 
-	Tree();
-	~Tree();
-	void addChild(Tree* child);
-	void setData(Dane* newData);
-	void display();
-	int getLevel();
-	const std::vector<Tree*>& getChildren();
-	const Dane* getData();
+   
+
+    int getCwiartka(int hour, int minute) const;
+
+public:
+    void dodanieDanych(const Point& dataPoint);
+    void pokazDrzewo() const;
 };
 
 #endif // !TREE_H
-
