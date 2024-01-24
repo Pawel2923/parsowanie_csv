@@ -23,15 +23,15 @@ static void LoadDataFromCsv(string filePath) {
 
     // Zbuduj drzewo danych
     Tree dataTree;
-    for (const auto& dataPoint : dataPoints) {
-        dataTree.dodanieDanych(dataPoint);
-    }
+    for (const auto& point : dataPoints) {
+		dataTree.dodanieDanych(point);
+	}
 
     // Utwórz obiekt analizatora danych
-    DataAnalyzer dataAnalyzer(dataTree);
+    //DataAnalyzer dataAnalyzer(dataTree);
 
     // Przyk³adowe wywo³anie funkcji analizatora
-    cout << "Suma autokonsumpcji: " << dataAnalyzer.sumAutokonsumpcja("2019-01-01 00:00", "2019-01-01 00:15") << endl;
+    //cout << "Suma autokonsumpcji: " << dataAnalyzer.sumAutokonsumpcja("15.10.2020 00:00", "15.10.2020 6:15") << endl;
 }
 
 int main()
@@ -45,7 +45,7 @@ int main()
         switch (choice) {
         case 1:
             cout << "Wczytaj plik CSV" << endl;
-            LoadDataFromCsv("Chart Export.csv");
+            LoadDataFromCsv("plik.csv");
 			break;
         case 2:
 			cout << "Zapisz do pliku binarnego" << endl;

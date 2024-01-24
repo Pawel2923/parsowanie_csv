@@ -5,11 +5,29 @@
 
 using namespace std;
 
-DataAnalyzer::DataAnalyzer(const Tree& tree) : tree(tree) {}
+DataAnalyzer::DataAnalyzer(const Tree& tree) : tree(tree) {
+	// Implementacja konstruktora
+    /*for (auto it = tree.begin(); it != tree.end(); ++it) {
+        const std::vector<Point>& points = *it;
+
+        for (const auto& point : points) {
+            cout << "Autokonsumpcja: " << point.autokonsumpcja << endl;
+        }
+    }*/
+}
 
 double DataAnalyzer::sumAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const {
     // Implementacja sumy autokonsumpcji
     double suma = 0;
+
+    //for (auto it = tree.begin(); it != tree.end(); ++it) {
+    //    const std::vector<Point>& points = *it;
+
+    //    // Przetwarzaj punkty w danej æwiartce
+    //    for (const auto& point : points) {
+    //        suma += point.autokonsumpcja;
+    //    }
+    //}
 
     return suma;
 }
