@@ -22,16 +22,20 @@ static void LoadDataFromCsv(string filePath) {
     std::vector<Point> dataPoints = manager.loadDataFromCsv(filePath);
 
     // Zbuduj drzewo danych
-    Tree dataTree;
-    for (const auto& point : dataPoints) {
-		dataTree.dodanieDanych(point);
+    Tree* dataTree = new Tree();
+    for (const Point& point : dataPoints) {
+		dataTree->dodanieDanych(point);
 	}
 
+    // wyswietl dane z drzewa
+    //dataTree.pokazDrzewo();
+
     // Utwórz obiekt analizatora danych
-    //DataAnalyzer dataAnalyzer(dataTree);
+    DataAnalyzer dataAnalyzer(dataTree);
 
     // Przyk³adowe wywo³anie funkcji analizatora
-    //cout << "Suma autokonsumpcji: " << dataAnalyzer.sumAutokonsumpcja("15.10.2020 00:00", "15.10.2020 6:15") << endl;
+    cout << "Suma autokonsumpcji: " << dataAnalyzer.sumAutokonsumpcja("01.10.2020 0:00", "01.10.2020 8:00") << endl;
+    cout << "Srednia importu: " << dataAnalyzer.averageImport("01.10.2020 0:00", "01.10.2020 8:00") << endl;
 }
 
 int main()

@@ -2,112 +2,183 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
+#include <ctime>
+#include <iomanip>
 
 using namespace std;
 
-DataAnalyzer::DataAnalyzer(const Tree& tree) : tree(tree) {
-	// Implementacja konstruktora
-    /*for (auto it = tree.begin(); it != tree.end(); ++it) {
-        const std::vector<Point>& points = *it;
+DataAnalyzer::DataAnalyzer(const Tree* tree) : tree(tree) {}
 
-        for (const auto& point : points) {
-            cout << "Autokonsumpcja: " << point.autokonsumpcja << endl;
-        }
-    }*/
+double DataAnalyzer::sumAutokonsumpcja(const string& startDateTime, const string& endDateTime) const {
+    // Implementacja sumy autokonsumpcji
+	double suma = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.autokonsumpcja;
+    }
+
+	return suma;
 }
 
-double DataAnalyzer::sumAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const {
-    // Implementacja sumy autokonsumpcji
+double DataAnalyzer::sumEksport(const string& startDateTime, const string& endDateTime) const {
+    // Implementacja sumy eksportu
     double suma = 0;
 
-    //for (auto it = tree.begin(); it != tree.end(); ++it) {
-    //    const std::vector<Point>& points = *it;
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
 
-    //    // Przetwarzaj punkty w danej æwiartce
-    //    for (const auto& point : points) {
-    //        suma += point.autokonsumpcja;
-    //    }
-    //}
+    for (auto& point : dataPoints) {
+        suma += point.eksport;
+    }
 
     return suma;
 }
 
-double DataAnalyzer::sumEksport(const std::string& startDateTime, const std::string& endDateTime) const {
-    // Implementacja sumy eksportu
-
-    return 0;
-}
-
-double DataAnalyzer::sumImport(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::sumImport(const string& startDateTime, const string& endDateTime) const {
     // Implementacja sumy importu
-    return 0;
+    double suma = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.import;
+    }
+
+    return suma;
 }
 
-double DataAnalyzer::sumPobor(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::sumPobor(const string& startDateTime, const string& endDateTime) const {
     // Implementacja sumy poboru
-    return 0;
+    double suma = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.pobor;
+    }
+
+    return suma;
 }
 
-double DataAnalyzer::sumProdukcja(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::sumProdukcja(const string& startDateTime, const string& endDateTime) const {
     // Implementacja sumy produkcji
-    return 0;
+    double suma = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.produkcja;
+    }
+
+    return suma;
 }
 
-double DataAnalyzer::averageAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::averageAutokonsumpcja(const string& startDateTime, const string& endDateTime) const {
     // Implementacja œredniej autokonsumpcji
-    return 0;
+    double suma = 0;
+    int counter = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.autokonsumpcja;
+        counter++;
+    }
+
+    return suma / counter;
 }
 
-double DataAnalyzer::averageEksport(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::averageEksport(const string& startDateTime, const string& endDateTime) const {
     // Implementacja œredniej eksportu
-    return 0;
+    double suma = 0;
+    int counter = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.eksport;
+        counter++;
+    }
+
+    return suma / counter;
 }
 
 double DataAnalyzer::averageImport(const std::string& startDateTime, const std::string& endDateTime) const {
-    // Implementacja œredniej importu
-    return 0;
+    double suma = 0;
+    int counter = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.import;
+        counter++;
+    }
+
+    return suma / counter;
 }
 
-double DataAnalyzer::averagePobor(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::averagePobor(const string& startDateTime, const string& endDateTime) const {
     // Implementacja œredniej poboru
-    return 0;
+    double suma = 0;
+    int counter = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.pobor;
+        counter++;
+    }
+
+    return suma / counter;
 }
 
-double DataAnalyzer::averageProdukcja(const std::string& startDateTime, const std::string& endDateTime) const {
+double DataAnalyzer::averageProdukcja(const string& startDateTime, const string& endDateTime) const {
     // Implementacja œredniej produkcji
-    return 0;
+    double suma = 0;
+    int counter = 0;
+
+    vector<Point> dataPoints = tree->getDataPoint(startDateTime, endDateTime);
+
+    for (auto& point : dataPoints) {
+        suma += point.produkcja;
+        counter++;
+    }
+
+    return suma / counter;
 }
 
-void DataAnalyzer::compareAutokonsumpcja(const std::string& startDateTime1, const std::string& endDateTime1,
-    const std::string& startDateTime2, const std::string& endDateTime2) const {
+void DataAnalyzer::compareAutokonsumpcja(const string& startDateTime1, const string& endDateTime1,
+    const string& startDateTime2, const string& endDateTime2) const {
     // Implementacja porównania autokonsumpcji
 }
 
-void DataAnalyzer::compareEksport(const std::string& startDateTime1, const std::string& endDateTime1,
-    const std::string& startDateTime2, const std::string& endDateTime2) const {
+void DataAnalyzer::compareEksport(const string& startDateTime1, const string& endDateTime1,
+    const string& startDateTime2, const string& endDateTime2) const {
     // Implementacja porównania eksportu
 }
 
-void DataAnalyzer::compareImport(const std::string& startDateTime1, const std::string& endDateTime1,
-    const std::string& startDateTime2, const std::string& endDateTime2) const {
+void DataAnalyzer::compareImport(const string& startDateTime1, const string& endDateTime1,
+    const string& startDateTime2, const string& endDateTime2) const {
     // Implementacja porównania importu
 }
 
-void DataAnalyzer::comparePobor(const std::string& startDateTime1, const std::string& endDateTime1,
-    const std::string& startDateTime2, const std::string& endDateTime2) const {
+void DataAnalyzer::comparePobor(const string& startDateTime1, const string& endDateTime1,
+    const string& startDateTime2, const string& endDateTime2) const {
     // Implementacja porównania poboru
 }
 
-void DataAnalyzer::compareProdukcja(const std::string& startDateTime1, const std::string& endDateTime1,
-    const std::string& startDateTime2, const std::string& endDateTime2) const {
+void DataAnalyzer::compareProdukcja(const string& startDateTime1, const string& endDateTime1,
+    const string& startDateTime2, const string& endDateTime2) const {
     // Implementacja porównania produkcji
 }
 
 void DataAnalyzer::searchAndPrintRecords(double searchedValue, double tolerance,
-    const std::string& startDateTime, const std::string& endDateTime) const {
+    const string& startDateTime, const string& endDateTime) const {
     // Implementacja wyszukiwania i wypisywania rekordów
 }
 
-void DataAnalyzer::printDataInRange(const std::string& startDateTime, const std::string& endDateTime) const {
+void DataAnalyzer::printDataInRange(const string& startDateTime, const string& endDateTime) const {
     // Implementacja wypisywania danych w przedziale
 }
