@@ -10,10 +10,6 @@ class Tree {
 private:
     
         std::map<int, std::map<int, std::map<int, std::map<int, std::vector<Point>>>>> tree;
-    
-
-   
-
     int getCwiartka(int hour, int minute) const;
 
 public:

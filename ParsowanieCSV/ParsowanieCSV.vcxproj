@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ParsowanieCSV.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Point.h" />
