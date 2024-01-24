@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Analyzer.cpp" />
     <ClCompile Include="ParsowanieCSV.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Analyzer.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
