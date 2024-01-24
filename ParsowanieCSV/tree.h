@@ -8,11 +8,11 @@
 
 class Tree {
 private:
-    
-        std::map<int, std::map<int, std::map<int, std::map<int, std::vector<Point>>>>> tree;
+
+    std::map<int, std::map<int, std::map<int, std::map<int, std::vector<Point>>>>> tree;
+    int getCwiartka(int hour, int minute) const;
 
 public:
-    int getCwiartka(int hour, int minute) const;
     void dodanieDanych(const Point& dataPoint);
     void pokazDrzewo() const;
 };

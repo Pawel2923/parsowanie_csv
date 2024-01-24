@@ -11,8 +11,6 @@ double DataAnalyzer::sumAutokonsumpcja(const std::string& startDateTime, const s
     // Implementacja sumy autokonsumpcji
     double suma = 0;
 
-    
-
     return suma;
 }
 
