@@ -5,8 +5,11 @@
 #include "Tree.h"
 
 class DataAnalyzer {
+private:
+    const Tree* tree;
+
 public:
-    DataAnalyzer(const Tree& tree);
+    DataAnalyzer(const Tree* tree);
 
     double sumAutokonsumpcja(const std::string& startDateTime, const std::string& endDateTime) const;
     double sumEksport(const std::string& startDateTime, const std::string& endDateTime) const;
@@ -38,9 +41,6 @@ public:
     void searchAndPrintRecords(double searchedValue, double tolerance, const std::string& startDateTime, const std::string& endDateTime) const;
 
     void printDataInRange(const std::string& startDateTime, const std::string& endDateTime) const;
-
-private:
-    const Tree& tree;
 };
 
 #endif // ANALYZER_H

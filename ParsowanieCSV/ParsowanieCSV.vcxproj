@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Analyzer.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ParsowanieCSV.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="tree.cpp" />
@@ -136,11 +137,12 @@
   <ItemGroup>
     <ClInclude Include="Analyzer.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Chart Export.csv" />
+    <None Include="plik.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

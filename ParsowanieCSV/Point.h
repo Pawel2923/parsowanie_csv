@@ -8,15 +8,12 @@ class Point {
 public:
     Point(const std::string & date, double autokonsumpcja, double eksport, double import, double pobor, double produkcja);
 
-
     std::string date;
     double autokonsumpcja;
     double eksport;
     double import;
     double pobor;
     double produkcja;
-
-
 };
 
 #endif // POINT_Hv

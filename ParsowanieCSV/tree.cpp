@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <sstream>
 
+Tree::Tree() {}
+
 void Tree::dodanieDanych(const Point& dataPoint) {
     int year, month, day, quarter;
 
@@ -25,26 +27,82 @@ void Tree::dodanieDanych(const Point& dataPoint) {
 
 void Tree::pokazDrzewo() const {
     for (const auto& yearNode : tree) {
-        std::cout << "Rok " << yearNode.first << std::endl;
-        for (const auto& monthNode : yearNode.second) {
-            std::cout << "  Miesi¹c " << monthNode.first << std::endl;
-            for (const auto& dayNode : monthNode.second) {
-                std::cout << "    Dzieñ " << dayNode.first << std::endl;
-                for (const auto& quarterNode : dayNode.second) {
-                    std::cout << "      Æwiartka " << quarterNode.first << std::endl;
-                    for (const auto& dataPoint : quarterNode.second) {
-                        // Wypisz dane punktu (dataPoint)
-                        std::cout << "Data"<<dataPoint.date
-                            << ",Autokonsumpcja: " << dataPoint.autokonsumpcja 
-                            << " Eksport : " << dataPoint.eksport
-                            << " Import: " << dataPoint.import 
-                            << " Pobór: " << dataPoint.pobor 
-                            << " Produkcja: " << dataPoint.produkcja << std::endl;
+        std::cout << "Rok: " << yearNode.first << std::endl;
+
+        for (int i = 0; i < 12; i++) {
+            if (yearNode.second.find(i + 1) != yearNode.second.end()) {
+                std::cout << "  Miesi¹c: " << i + 1 << std::endl;
+
+                for (int j = 0; j < 31; j++) {
+                    auto& monthNode = yearNode.second.at(i + 1);
+                    if (monthNode.find(j + 1) != monthNode.end()) {
+                        std::cout << "    Dzieñ: " << j + 1 << std::endl;
+
+                        for (int k = 0; k < 4; k++) {
+                            auto& dayNode = monthNode.at(j + 1);
+                            if (dayNode.find(k + 1) != dayNode.end()) {
+                                std::cout << "      Æwiartka: " << k + 1 << std::endl;
+
+                                for (const auto& dataPoint : dayNode.at(k + 1)) {
+                                    // Wypisz dane punktu (dataPoint)
+                                    std::cout << "        Data: " << dataPoint.date
+                                        << ", Autokonsumpcja: " << dataPoint.autokonsumpcja
+                                        << ", Eksport: " << dataPoint.eksport
+                                        << ", Import: " << dataPoint.import
+                                        << ", Pobór: " << dataPoint.pobor
+                                        << ", Produkcja: " << dataPoint.produkcja << std::endl;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+}
+
+std::vector<Point> Tree::getDataPoint(const std::string& startDateTime, const std::string& endDateTime) const {
+    std::vector<Point> dataPoints;
+
+    // Convert startDateTime and endDateTime to std::tm objects
+    std::tm startTm = {};
+    std::istringstream startStream(startDateTime);
+    startStream >> std::get_time(&startTm, "%d.%m.%Y %H:%M");
+
+    std::tm endTm = {};
+    std::istringstream endStream(endDateTime);
+    endStream >> std::get_time(&endTm, "%d.%m.%Y %H:%M");
+
+    // Iterate over the tree data structure
+    for (const auto& yearNode : tree) {
+        for (int i = 0; i < 12; i++) {
+            if (yearNode.second.find(i + 1) != yearNode.second.end()) {
+                for (int j = 0; j < 31; j++) {
+                    auto& monthNode = yearNode.second.at(i + 1);
+                    if (monthNode.find(j + 1) != monthNode.end()) {
+                        for (int k = 0; k < 4; k++) {
+                            auto& dayNode = monthNode.at(j + 1);
+                            if (dayNode.find(k + 1) != dayNode.end()) {
+                                for (const auto& dataPoint : dayNode.at(k + 1)) {
+                                    // Convert dataPoint.date to std::tm object
+                                    std::tm dataTm = {};
+                                    std::istringstream dataStream(dataPoint.date);
+                                    dataStream >> std::get_time(&dataTm, "%d.%m.%Y %H:%M");
+
+                                    // Check if dataPoint.date is within the specified range
+                                    if (std::mktime(&dataTm) >= std::mktime(&startTm) && std::mktime(&dataTm) <= std::mktime(&endTm)) {
+                                        dataPoints.push_back(dataPoint);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return dataPoints;
 }
 
 int Tree::getCwiartka(int hour, int minute) const {
