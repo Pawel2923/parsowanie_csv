@@ -133,10 +133,43 @@ vector<Point> FileManager::loadDataFromCsv(const string& filePath) {
 
 void FileManager::saveDataToBinary(const Tree& dataTree, const string& filePath) {
     // Implementacja zapisywania danych do pliku binarnego
+	ofstream binaryFile(filePath, ios::binary);
+
+    if (!binaryFile.is_open()) {
+		cerr << "Wystapil blad przy otwieraniu " << filePath << endl;
+		throw exception("Wystapil blad przy otwieraniu pliku");
+	}
+
+    vector<Point> dataPoints = dataTree.getDataPoint("01.10.2020 0:00", "31.10.2021 23:45");
+
+    for (size_t i = 0; i < dataPoints.size(); ++i) {
+		binaryFile.write(reinterpret_cast<const char*>(&dataPoints[i]), sizeof(Point));
+    }
+
+	binaryFile.close();
 }
 
 Tree FileManager::loadDataFromBinary(const string& filePath) {
-    // Implementacja odczytywania danych z pliku binarnego
+    // Implementacja wczytywania danych z pliku binarnego
+    Tree newTree;
+    ifstream binaryFile(filePath, ios::binary);
+    if (!binaryFile.is_open()) {
+        cerr << "Wystapil blad przy otwieraniu " << filePath << endl;
+        throw exception("Wystapil blad przy otwieraniu pliku");
+    }
+    vector<Point> dataPoints;
+    Point* point;
+    while (binaryFile.read(reinterpret_cast<char*>(&point), sizeof(Point))) {
+        dataPoints.push_back(*point);
+    }
+    binaryFile.close();
+    if (!dataPoints.empty()) {
+        for (size_t i = 0; i < dataPoints.size(); ++i) {
+			newTree.dodanieDanych(dataPoints[i]);
+		}
+        return newTree;
+    }
+    cerr << "Nie wczytano danych" << endl;
 
-    return Tree();
+    return newTree;
 }
